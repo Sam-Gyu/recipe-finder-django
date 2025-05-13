@@ -1,0 +1,143 @@
+/* General Body Settings */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+/* Page Wrapper for Relative Positioning */
+.page-wrapper {
+    position: relative;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Form Centering Wrapper */
+.form-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+/* Header Styling */
+.x {
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 25px;
+    background: linear-gradient(to right, #4E342E, #6D4C41);
+    color: #EFEBE9;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Form Section Styling */
+.recipe {
+    text-align: left;
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+    background-color: #EFEBE9;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Input Fields Styling */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #4E342E;
+}
+
+input {
+    width: 95%;
+    padding: 12px 15px;
+    margin-top: 8px;
+    margin-bottom: 20px;
+    border: 2px dashed #D7CCC8;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s;
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: left;
+}
+
+input:focus {
+    border-color: #6D4C41;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(141, 110, 99, 0.2);
+}
+
+/* Submit Button Styling */
+button {
+    background: linear-gradient(to right, #6D4C41, #4E342E);
+    color: #EFEBE9;
+    padding: 14px;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+    text-transform: uppercase;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(93, 64, 55, 0.4);
+}
+
+/* Admin Checkbox Styling */
+.checkbox-admin {
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+    color: black;
+}
+
+.checkbox-admin input {
+    width: auto;
+    margin-right: 10px;
+}
+
+/* Error messages */
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.alert-danger p {
+    margin: 5px 0;
+}
+
+/* Hamburger menu (hidden by default) */
+.menu-container {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .menu-container {
+        display: block;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+    }
+
+    .hamburger span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background-color: #4E342E;
+        margin: 5px 0;
+    }
+}

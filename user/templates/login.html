@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Recipe Finder</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body>
+    <header style="display: none;"></header>
+    
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <h2>Welcome Back!</h2>
+                <p>Sign in to access your recipe collection</p>
+            </div>
+            
+            <div class="login-form">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                    </div>
+
+                    <div class="admin-remember">
+                        <div class="checkbox-admin">
+                            <input type="checkbox" id="adminLogin" name="adminLogin">
+                            <label for="adminLogin">Login as admin</label>
+                        </div>
+                        <div class="checkbox-remember">
+                            <input type="checkbox" id="rememberMe" name="rememberMe">
+                            <label for="rememberMe">Remember me</label>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="login-button">Login to Your Kitchen</button>
+                    
+                    <div class="signup-link">
+                        New to Recipe Finder? <a href="{% url 'signup' %}" name="signup">Create an account</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/login.js' %}" defer></script>
+</body>
+</html>

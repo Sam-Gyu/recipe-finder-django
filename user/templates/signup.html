@@ -1,0 +1,65 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Recipe Sign-Up</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+</head>
+<body>
+    <div class="page-wrapper">
+
+        <div class="x">
+            <h2>Welcome to Recipe Finder website!</h2>
+            <h4>Sign up to create an account</h4>
+        </div>
+
+        <div class="form-wrapper">
+            <div class="recipe">
+                <form method="POST" action="{% url 'ajax_signup' %}" id="signup-form">
+                    {% csrf_token %}
+
+                    {% if form.errors %}
+                        <div class="alert-danger">
+                            {% for field, errors in form.errors.items %}
+                                {% for error in errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <div>
+                        <label for="id_username">Username:</label><br>
+                        <input id="id_username" type="text" name="username" placeholder="Enter your username" required>
+                    </div>
+                    <div>
+                        <label for="id_email">Email:</label><br>
+                        <input id="id_email" type="email" name="email" placeholder="Enter your email" required>
+                    </div>
+                    <div>
+                        <label for="id_password1">Password:</label><br>
+                        <input id="id_password1" type="password" name="password" placeholder="Enter your password" required>
+                    </div>
+                    <div>
+                        <label for="id_password2">Confirm Password:</label><br>
+                        <input id="id_password2" type="password" name="password2" placeholder="Confirm password" required>
+                    </div>
+
+                    <div class="checkbox-admin">
+                        <input type="checkbox" id="id_is_admin" name="is_admin">
+                        <label for="id_is_admin">Sign up as admin</label>
+                    </div>
+
+                    <div>
+                        <button type="submit">Sign Up</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/signup.js' %}" defer></script>
+</body>
+</html>

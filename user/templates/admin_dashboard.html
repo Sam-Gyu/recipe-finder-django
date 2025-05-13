@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>admin dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/admin-user.css' %}">
+</head>
+<body>
+    <div class="menu-container">
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="logo">Recipe Finder</div>
+        
+        <nav class="#">
+            <a href="#">Recipes</a>
+            <a href="#">Add Recipe</a>
+            <a href="#">Logout</a>
+        </nav>
+    </div>
+    <div class="dashboard">
+        <h1>welcome to the admin dashboard</h1>
+        <p>you can add new recipes or see current recipes and edit or delete them</p>
+        <div class="options">
+            <a class="A" href="#">Add a new recipe</a>
+            <a class="A" href="#">view available recipes</a>
+        </div>
+
+    </div>
+    
+    
+</body>
+</html>

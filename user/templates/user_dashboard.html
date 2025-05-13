@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/admin-user.css' %}">
+
+</head>
+<body>
+    <div class="menu-container">
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="logo">Recipe Finder</div>
+        
+        <nav class="nav-menu">
+            <a href="#">Search Recipe</a>
+            <a href="#">Favorites</a>
+            <a href="#">Logout</a>
+        </nav>
+    </div>
+    <div class="dashboard">
+        <h1>Welcome to the user control panel</h1>
+        <p>You can view available recipes or view your favorites list</p>
+        <div class="options">
+            <a class="A" href="#">View available recipes</a>
+            <a class="A" href="#">Show your favorites</a>
+        </div>
+    </div>
+</body>
+</html>
