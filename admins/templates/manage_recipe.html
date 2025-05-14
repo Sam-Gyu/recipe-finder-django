@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Recipe</title>
+    {% load static %}
+    <link rel="stylesheet" href=" {% static 'css/manage_recipe.css' %}">
+</head>
+<body>
+    <div class="container">
+    
+        <header>
+            <div class="menu-container">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="logo">Recipe Finder</div>
+                
+                <nav class="nav-menu">
+                    <a href="{% url 'view_recipes' %}">Recipes</a>
+                    <a href="{% url 'manage_recipe' %}">Add Recipe</a>
+                    <a href="{% url 'login' %}">Logout</a>
+                </nav>
+            </div>
+        </header>
+        <h2 id="h2">Add Recipe</h2>
+        <form method="POST" action="{% url 'add_recipe' %}" id="recipeForm">
+            {% csrf_token %}
+            <div class="data">
+                <input type="hidden" name="recipe_id">
+                <div class="info">
+                    <div class="nameCategory">
+                        <div class="label">
+                            <label class="white-color" for="recipe_name">Recipe Name</label>
+                            <input type="text" id="recipe_name" name="recipe_name" required>
+                        </div>
+                        
+                        <div class="label">
+                            <label class="white-color" for="course_name">Course Name</label>
+                            <select id="course_name" name="course_name">
+                                <option value="" selected disabled></option>
+                                <option value="Main Course">Main Course</option>
+                                <option value="Appetizer">Appetizer</option>
+                                <option value="Dessert">Dessert</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="nameCategory">
+                        <div class="rateDiv">
+                            <label for="rate">Rate: </label>
+                            <input id="rate" name="rate" type="number" min="0" max="5">
+                            <span>/ 5</span>
+                        </div>
+                        <div class="durationDiv">
+                            <label for="duration">Duration</label>
+                            <input id="duration" name="duration" type="text">
+                        </div>
+                    </div>
+             
+                  
+                    <label for="description">Description</label><br>
+                    <textarea id="description" name="description" rows="4" cols="50" ></textarea>
+                    
+                    <label for="instructions">Instructions</label><br>
+                    <textarea id="instructions" name="instructions" rows="4" cols="50" ></textarea>
+                
+                </div>
+
+            
+
+            <div class="ingredients_container">
+                <div class="image">
+                    <div class="inputs">
+                        <img id="recipeImg" src="{% static 'images/placeholder.png' %}">
+                        <input name="recipeImage" id="uploadImg" type="file" class="file" accept="image/png, image/jpeg, image/jpg">
+                    </div>
+                    <button type="button" id="removeImg">Remove</button>
+                </div>
+                <label for="ingredients">Ingredients</label><br>
+                <div class="ingredients_input">
+                    <input placeholder="Name" type="text" id="ingredients" name="ingredients"/>
+                    <input placeholder="Quantity" type="text" id="quantity" name="quantity"/>
+                    <button id="add_ingredient" type="button">Add Ingredient</button>
+                </div>
+            <label>Current Ingredients</label><br>
+            <table id="ingredients_table">
+                <thead>
+                    <tr>
+                        <th style="display: none;">ID</th>
+                        <th>Name</th>
+                        <th>Quantity</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+            </div>
+        </div>
+
+        <br><br>
+          
+            <input id="addRecipe" class="submit" type="submit" value="Add Recipe">
+            <input class="submit" style="display: none;" id="editRecipe" type="click" value="Edit Recipe">
+        </form>
+    </div>
+    <div class="shape"></div>
+    <div class="shape1"></div>
+
+
+    <script src="{% static 'js/manage_recipe.js' %}"></script>
+</body>
+</html>

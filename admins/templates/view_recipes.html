@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipes List</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/view_recipes.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="menu-container">
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="logo">Recipe Finder</div>
+            
+            <nav class="nav-menu">
+                <a href="{% url 'view_recipes' %}">Recipes</a>
+                <a href="{% url 'manage_recipe' %}">Add Recipe</a>
+                <a href="{% url 'login' %}">Logout</a> 
+            </nav>
+        </div>
+        <h2>Avaiable Recipes</h2>
+        <div class="data">
+            {% for recipe in recipes %}
+                <div class="recipe_card">
+                    <h2>{{recipe.name}}</h2>
+                    <p><strong>Course:</strong> {{recipe.course}}</p>
+                    <p><strong>Description:</strong> {{recipe.description}}</p>
+                    <p><strong>Ingredients:</strong></p>
+                    <ul>
+                        {% for ingredient in recipe.ingredients.all %}
+                            <li>{{ingredient.name}} - {{ingredient.quantity}}</li>
+                        {% endfor %}
+                    </ul>
+                    <div class="buttons">
+                        <button id="edit_recipe" type="button">Edit</button>
+                        <button id="delete_recipe" type="button">Delete</button>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <button class="add">+</button>
+    </div>
+
+    <script src="{% static 'js/view_recipes.js' %}" defer></script>
+
+</body>
+</html>

@@ -14,7 +14,7 @@ from django.contrib.auth.decorators import login_required
 def login_view(request):
     return render(request, 'login.html')
 
-@require_http_methods(["GET"])
+@require_http_methods(["GET"]) 
 def signup_view(request):
     form = UserCreationForm()
     return render(request, 'signup.html', {'form': form})
@@ -27,7 +27,7 @@ def ajax_signup(request):
         username = data.get('username')
         email = data.get('email')
         password = data.get('password')
-        is_admin = data.get('is_admin', False)
+        is_admin = data.get('is_admin')
 
         if not username or not email or not password:
             return JsonResponse({'success': False, 'message': 'All fields are required.'})

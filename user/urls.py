@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import login_view, ajax_login, admin_dashboard, user_dashboard, ajax_signup, signup_view
-
+ 
 urlpatterns = [
     path('login/', login_view, name='login'),
     path('ajax-login/', ajax_login, name='ajax_login'),

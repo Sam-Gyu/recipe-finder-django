@@ -16,18 +16,18 @@
         </div>
         <div class="logo">Recipe Finder</div>
         
-        <nav class="#">
-            <a href="#">Recipes</a>
-            <a href="#">Add Recipe</a>
-            <a href="#">Logout</a>
+        <nav class="nav-menu">
+            <a href="{% url 'view_recipes' %}">Recipes</a>
+            <a href="{% url 'manage_recipe' %}">Add Recipe</a>
+            <a href="{% url 'login' %}">Logout</a>
         </nav>
     </div>
     <div class="dashboard">
         <h1>welcome to the admin dashboard</h1>
         <p>you can add new recipes or see current recipes and edit or delete them</p>
         <div class="options">
-            <a class="A" href="#">Add a new recipe</a>
-            <a class="A" href="#">view available recipes</a>
+            <a class="A" href="{% url 'manage_recipe' %}">Add a new recipe</a>
+            <a class="A" href="{% url 'view_recipes' %}">view available recipes</a>
         </div>
 
     </div>
