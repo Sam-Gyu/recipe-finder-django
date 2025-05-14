@@ -25,8 +25,110 @@
                 </nav>
             </div>
         </header>
-        <h2 id="h2">Add Recipe</h2>
-        <form method="POST" action="{% url 'add_recipe' %}" id="recipeForm">
+        {% if recipe %}
+            <h2 id="h2">Edit Recipe</h2>
+            <form method="POST" action="{% url 'edit_recipe' recipe.id %}" id="editRecipeForm">
+            {% csrf_token %}
+            <div class="data">
+                <input type="hidden" name="recipe_id">
+                <div class="info">
+                    <div class="nameCategory">
+                        <div class="label">
+                            <label class="white-color" for="recipe_name">Recipe Name</label>
+                            <input type="text" id="recipe_name" name="recipe_name" value="{{recipe.name}}" required>
+                            <input style="display: none;" type="text" id="recipe_id" name="recipe_id" value="{{recipe.id}}">
+
+                        </div>
+                        
+                        <div class="label">
+                            <label class="white-color" for="course_name">Course Name</label>
+                            <select id="course_name" name="course_name">
+                                {% if recipe.course == "Main Course" %}
+                                    <option value="Main Course" selected>Main Course</option>
+                                    <option value="Appetizer">Appetizer</option>
+                                    <option value="Dessert">Dessert</option>
+                                {% elif recipe.course == "Appetizer" %}
+                                    <option value="Appetizer" selected>Appetizer</option>
+                                    <option value="Main Course">Main Course</option>
+                                    <option value="Dessert">Dessert</option>
+                                {% elif recipe.course == "Dessert" %}
+                                    <option value="Dessert" selected>Dessert</option>
+                                    <option value="Main Course">Main Course</option>
+                                    <option value="Appetizer">Appetizer</option>
+                                {% endif %}
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="nameCategory">
+                        <div class="rateDiv">
+                            <label for="rate">Rate: </label>
+                            <input id="rate" name="rate" type="number" min="0" max="5" value="{{recipe.rate}}">
+                            <span>/ 5</span>
+                        </div>
+                        <div class="durationDiv">
+                            <label for="duration">Duration</label>
+                            <input id="duration" name="duration" type="text" value="{{recipe.duration}}">
+                        </div>
+                    </div>
+             
+                  
+                    <label for="description">Description</label><br>
+                    <textarea id="description" name="description" rows="4" cols="50" >{{recipe.decription}}</textarea>
+                    
+                    <label for="instructions">Instructions</label><br>
+                    <textarea id="instructions" name="instructions" rows="4" cols="50" >{{recipe.instructions}}</textarea>
+                
+                </div>
+
+            
+
+            <div class="ingredients_container">
+                <div class="image">
+                    <div class="inputs">
+                        <img id="recipeImg" src="{{recipe.image.url}}">
+                        <input name="recipeImage" id="uploadImg" type="file" class="file" accept="image/png, image/jpeg, image/jpg">
+                    </div>
+                    <button type="button" id="removeImg">Remove</button>
+                </div>
+                <label for="ingredients">Ingredients</label><br>
+                <div class="ingredients_input">
+                    <input placeholder="Name" type="text" id="ingredients" name="ingredients"/>
+                    <input placeholder="Quantity" type="text" id="quantity" name="quantity"/>
+                    <button id="add_ingredient" type="button">Add Ingredient</button>
+                </div>
+            <label>Current Ingredients</label><br>
+            <table id="ingredients_table">
+                <thead>
+                    <tr>
+                        <th style="display: none;">ID</th>
+                        <th>Name</th>
+                        <th>Quantity</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ingredient in ingredients %}
+                        <tr>
+                            <td>{{ingredient.name}}</td>
+                            <td>{{ingredient.quantity}}</td>
+                            <td><button id="remove_ingredient" type="button" class="remove_ingredient">X</button></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            </div>
+        </div>
+
+        <br><br>
+          
+            <input class="submit" id="editRecipe" type="submit" value="Edit Recipe">
+        </form>
+        {% endif %}
+        {% if not recipe %}
+            <h2 id="h2">Add Recipe</h2>
+            <form method="POST" action="{% url 'add_recipe' %}" id="recipeForm">
             {% csrf_token %}
             <div class="data">
                 <input type="hidden" name="recipe_id">
@@ -106,8 +208,9 @@
         <br><br>
           
             <input id="addRecipe" class="submit" type="submit" value="Add Recipe">
-            <input class="submit" style="display: none;" id="editRecipe" type="click" value="Edit Recipe">
         </form>
+        {% endif %}
+        
     </div>
     <div class="shape"></div>
     <div class="shape1"></div>

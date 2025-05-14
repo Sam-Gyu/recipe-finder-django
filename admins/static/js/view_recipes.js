@@ -21,7 +21,17 @@ class Ingredient {
 }
 
 function edit_recipe(id){
-    window.location.href = `/details.html?id=${recipe.id}`;
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            // Assuming the response is a JSON object
+            console.log(this.responseText);
+            window.location.href = JSON.parse(this.responseText).redirect_url;
+        }
+    };
+    xhttp.open("GET", `show-recipe/${id}`, true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
 }
 
 function delete_recipe(id){

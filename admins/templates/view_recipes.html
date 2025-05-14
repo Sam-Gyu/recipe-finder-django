@@ -36,7 +36,7 @@
                         {% endfor %}
                     </ul>
                     <div class="buttons">
-                        <button id="edit_recipe" type="button">Edit</button>
+                        <button id="edit_recipe" onclick="edit_recipe('{{recipe.id}}')" type="button">Edit</button>
                         <button id="delete_recipe" onclick="delete_recipe('{{recipe.id}}')" type="button">Delete</button>
                     </div>
                 </div>
