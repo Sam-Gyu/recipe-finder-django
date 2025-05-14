@@ -24,6 +24,23 @@ function edit_recipe(id){
     window.location.href = `/details.html?id=${recipe.id}`;
 }
 
+function delete_recipe(id){
+    confirm('Are you sure you want to delete this recipe?');
+    if(!confirm){
+        return;
+    }
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            location.reload();
+        }
+    };
+    xhttp.open("DELETE", `delete-recipe/${id}`, true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
+}
+
 function fetchRecipes(){
     recipes.forEach(recipe => {
         const card = document.createElement('div');

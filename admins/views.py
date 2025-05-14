@@ -60,3 +60,15 @@ def add_recipe(request):
         })
     except Exception as e:
         return JsonResponse({'success': False, 'message': f'An error occurred during adding recipe: {e}'})
+
+@csrf_exempt
+@require_http_methods(["DELETE"])
+def delete_recipe(request, recipe_id):
+    try:
+        recipe = Recipe.objects.get(id=recipe_id)
+        recipe.delete()
+        return JsonResponse({'success': True, 'message': 'Recipe deleted successfully!'})
+    except Recipe.DoesNotExist:
+        return JsonResponse({'success': False, 'message': 'Recipe not found!'})
+    except Exception as e:
+        return JsonResponse({'success': False, 'message': f'An error occurred during deleting recipe: {e}'})
