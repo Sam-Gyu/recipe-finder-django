@@ -9,4 +9,10 @@ urlpatterns = [
     path('', RedirectView.as_view(url='/login/')),
     path('', include('user.urls')),  # Include user app URLs
     path('admins/', include('admins.urls')),  # Include admin app URLs
+<<<<<<< HEAD
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # Serve media files in development
+=======
+    path('favourites/', include('favourites.urls')),
+
+]
+>>>>>>> f687a66 (Initial commit)

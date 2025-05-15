@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Favorites - Recipe Finder</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/favorite.css'%}" /> 
+</head>
+    
+<body>
+    <header>
+      <div class="menu-container">
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="logo">Recipe Finder</div>
+        <nav class="nav-menu">
+          <a href="search.html">Search Recipe</a>
+          <a href="{% url 'favorites_page' %}">Favorites</a>
+          <a href="{% url 'login' %}">Logout</a>
+        </nav>
+      </div>
+    </header>
+  
+    <div class="main-container">
+      <div class="welcome-header">
+        <h1>Your Favorite Recipes ❤</h1>
+        <p>All your saved meals in one place</p>
+      </div>
+  
+      <div class="recipe-grid" id="favorites-container">
+        
+      </div>
+    </div>
+    <script src="{% static 'js/favorites.js'%}"></script>  
+  </body>
+</html>
