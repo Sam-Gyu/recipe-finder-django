@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const email = document.getElementById('id_email').value;
         const password = document.getElementById('id_password1').value;
         const password2 = document.getElementById('id_password2').value;
+        const is_admin = document.getElementById('id_is_admin').checked;
+
         const csrf_token = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
         if (!username || !email || !password || !password2) {
@@ -40,7 +42,8 @@ document.addEventListener('DOMContentLoaded', function() {
             body: JSON.stringify({
                 username: username,
                 email: email,
-                password: password
+                password: password,
+                is_admin: is_admin
             })
         })
         .then(response => response.json())
