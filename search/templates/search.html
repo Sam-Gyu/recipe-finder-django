@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Search Recipes - Recipe Finder</title>
+    <link rel="stylesheet" href="{% static 'css/search.css' %}" />
+</head>
+<body>
+    <header>
+        <div class="menu-container">
+            <div class="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+            <div class="logo">Recipe Finder</div>
+            <nav class="nav-menu">
+                <a href="{% url 'search_recipes' %}">Search Recipe</a>
+                <a href="{% url 'favorites_page' %}">Favorites</a>
+                <a href="{% url 'login' %}">Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <div class="welcome-header">
+            <h1>Time to spice things up!</h1>
+            <p>Browse our recipes and start cooking</p>
+        </div>
+
+        <div class="search-card">
+            <div class="search-input-group">
+                <input type="text" class="search-input" placeholder="Food, ingredients, etc..." />
+                <button type="submit" class="search-button" aria-label="Search"></button>
+            </div>
+        </div>
+
+        <div class="category-tabs">
+            <div class="category-tab active">Main Course</div>
+            <div class="category-tab">Appetizer</div>
+            <div class="category-tab">Dessert</div>
+        </div>
+
+        <div class="recipe-grid"></div>
+    </div>
+
+    <script type="application/json" id="recipes-data">
+    {{ recipes_json|safe }}
+</script>
+
+<script>
+    const recipes = JSON.parse(document.getElementById("recipes-data").textContent);
+</script>
+
+    <script src="{% static 'js/search.js' %}"></script>
+</body>
+</html>

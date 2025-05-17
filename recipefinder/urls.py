@@ -5,6 +5,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    path('search/', include('search.urls')),
+
     path('superadmin/', admin.site.urls),
     path('', RedirectView.as_view(url='/login/')),
     path('', include('user.urls')),  # Include user app URLs

@@ -18,7 +18,7 @@
         <div class="logo">Recipe Finder</div>
         
         <nav class="nav-menu">
-            <a href="#">Search Recipe</a>
+            <a href="{% url 'search_recipes' %}">Search Recipe</a>
             <a href="{% url 'favorites_page' %}">Favorites</a>
             <a href="{% url 'login' %}">Logout</a>
         </nav>
@@ -27,7 +27,7 @@
         <h1>Welcome to the user control panel</h1>
         <p>You can view available recipes or view your favorites list</p>
         <div class="options">
-            <a class="A" href="#">View available recipes</a>
+            <a class="A" href="{% url 'view_recipes' %}">View available recipes</a>
             <a class="A" href="{% url 'favorites_page' %}">Show your favorites</a>
         </div>
     </div>
