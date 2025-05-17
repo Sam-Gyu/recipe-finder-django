@@ -48,8 +48,13 @@
     {{ recipes_json|safe }}
 </script>
 
+<script type="application/json" id="favorites-data">
+    {{ favorites_json|safe }}
+</script>
+
 <script>
     const recipes = JSON.parse(document.getElementById("recipes-data").textContent);
+    let favorites = JSON.parse(document.getElementById("favorites-data").textContent);
 </script>
 
     <script src="{% static 'js/search.js' %}"></script>

@@ -2,7 +2,7 @@
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.http import require_POST, require_GET
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required 
 from .models import Favorite
 from admins.models import Recipe
 import json
@@ -18,7 +18,12 @@ def add_to_favorites(request):
     recipe_id = data.get('recipe_id')
     recipe = Recipe.objects.get(id=recipe_id)
     Favorite.objects.get_or_create(user=request.user, recipe=recipe)
-    return JsonResponse({'status': 'added'})
+    favorites = Favorite.objects.filter(user=request.user).select_related('recipe')
+    data = [{
+        'recipe': fav.recipe.id,
+        'user': fav.user.id
+    } for fav in favorites]
+    return JsonResponse({'status': 'added', 'favorites' : data})
 
 @require_POST
 @login_required
@@ -26,7 +31,12 @@ def remove_from_favorites(request):
     data = json.loads(request.body)
     recipe_id = data.get('recipe_id')
     Favorite.objects.filter(user=request.user, recipe_id=recipe_id).delete()
-    return JsonResponse({'status': 'removed'})
+    favorites = Favorite.objects.filter(user=request.user).select_related('recipe')
+    data = [{
+        'recipe': fav.recipe.id,
+        'user': fav.user.id
+    } for fav in favorites]
+    return JsonResponse({'status': 'removed', 'favorites' : data})
 
 @require_GET
 @login_required

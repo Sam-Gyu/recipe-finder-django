@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
       btn.addEventListener('click', function () {
         const recipeId = this.getAttribute('data-id');
         fetch('/api/favorites/remove/', {
-          method: 'POST',
+          method: 'POST', 
           headers: {
             'Content-Type': 'application/json',
             'X-CSRFToken': getCSRFToken()

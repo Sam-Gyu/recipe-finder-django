@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.decorators.http import require_http_methods
 from .models import Recipe, Ingredient
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required 
 from django.http import JsonResponse
 from django.urls import reverse
 import json
@@ -10,15 +11,20 @@ import uuid
 from django.core.files.base import ContentFile
 # Create your views here.
 
+
+@login_required
 @require_http_methods(["GET"])
 def view_recipes(request):
     # Logic to fetch and display recipes
     return render(request, 'view_recipes.html', {'recipes': Recipe.objects.all()})
 
+@login_required
 @require_http_methods(["GET"])
 def manage_recipe(request):
     return render(request, 'manage_recipe.html')
 
+
+@login_required
 @csrf_exempt
 @require_http_methods(["POST"])
 def add_recipe(request):
@@ -68,6 +74,8 @@ def add_recipe(request):
     except Exception as e:
         return JsonResponse({'success': False, 'message': f'An error occurred during adding recipe: {e}'})
 
+
+@login_required
 @csrf_exempt
 @require_http_methods(["DELETE"])
 def delete_recipe(request, recipe_id):
@@ -80,6 +88,8 @@ def delete_recipe(request, recipe_id):
     except Exception as e:
         return JsonResponse({'success': False, 'message': f'An error occurred during deleting recipe: {e}'})
 
+
+@login_required
 @require_http_methods(["GET"])
 def show_recipe(request, recipe_id):
     try:
@@ -94,6 +104,8 @@ def show_recipe(request, recipe_id):
     except Exception as e:
         return JsonResponse({'success': False, 'message': f'An error occurred during fetching recipe: {e}'})    
 
+
+@login_required
 @require_http_methods(["GET"])
 def display_recipe(request, recipe_id):
     try:
@@ -108,6 +120,8 @@ def display_recipe(request, recipe_id):
     except Exception as e:
         return JsonResponse({'success': False, 'message': f'An error occurred during displaying recipe: {e}'})
 
+
+@login_required
 @csrf_exempt
 @require_http_methods(["PUT"])
 def edit_recipe(request, recipe_id):

@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from .models import Recipe
+from admins.models import Recipe
+from favourites.models import Favorite
 import json
 
 @login_required
 def search_recipes(request):
-    recipes = Recipe.objects.filter(user=request.user)
+    recipes = Recipe.objects.all()
+    favorites = Favorite.objects.filter(user=request.user)
     recipes_json = json.dumps([
         {
             'id': r.id,
@@ -18,8 +20,16 @@ def search_recipes(request):
             'image': r.image.url if r.image else '',
         } for r in recipes
     ])
-    
+
+    favorites_json = json.dumps([
+        {
+            'user': f.user.id,
+            'recipe': f.recipe.id,
+        } for f in favorites
+    ])
+
     context = {
         'recipes_json': recipes_json,
+        'favorites_json': favorites_json
     }
     return render(request, 'search.html', context)

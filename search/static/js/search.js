@@ -1,3 +1,4 @@
+
 class Recipe {
     constructor(id, name, course, description, instructions, duration, rate, image) {
         this.id = id;
@@ -18,8 +19,6 @@ class Favorite {
     }
 }
 
-let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-let userId = localStorage.getItem("userId");
 
 function SR(recipess) {
     let grid = document.querySelector(".recipe-grid");
@@ -42,19 +41,42 @@ function SR(recipess) {
             </div>
         `;
 
-        if (favorites.find(fav => fav.recipeId === recipe.id)) {
+        if (favorites.find(fav => fav.recipe === recipe.id)) {
             card.querySelector(".favorite-heart").style.color = "red";
         }
 
         card.querySelector(".favorite-heart").addEventListener("click", () => {
-            if (favorites.find(fav => fav.recipeId === recipe.id)) {
-                favorites = favorites.filter(fav => fav.recipeId !== recipe.id);
-                card.querySelector(".favorite-heart").style.color = "";
+            if (favorites.find(fav => fav.recipe === recipe.id)) {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        card.querySelector(".favorite-heart").style.color = "";
+                        favorites = JSON.parse(this.responseText).favorites
+                    }
+                };
+                xhttp.open("POST", '../favourites/api/favorites/remove/', true);
+                xhttp.setRequestHeader("Content-type", "application/json");
+                xhttp.setRequestHeader("X-CSRFToken", getCSRFToken());
+                const data = JSON.stringify({
+                    recipe_id: recipe.id,
+                });
+                xhttp.send(data);
             } else {
-                favorites.push(new Favorite(userId, recipe.id));
-                card.querySelector(".favorite-heart").style.color = "red";
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        card.querySelector(".favorite-heart").style.color = "red";
+                        favorites = JSON.parse(this.responseText).favorites
+                    }
+                };
+                xhttp.open("POST", '../favourites/api/favorites/add/', true);
+                xhttp.setRequestHeader("Content-type", "application/json");
+                xhttp.setRequestHeader("X-CSRFToken", getCSRFToken());
+                const data = JSON.stringify({
+                    recipe_id: recipe.id,
+                });
+                xhttp.send(data);
             }
-            localStorage.setItem("favorites", JSON.stringify(favorites));
         });
 
         card.querySelector(".view-button").addEventListener("click", () => {
@@ -91,3 +113,15 @@ categories.forEach(cat => {
 });
 
 filterRecipes();
+
+function getCSRFToken() {
+  const name = 'csrftoken';
+  const cookies = document.cookie.split(';');
+  for (let i = 0; i < cookies.length; i++) {
+    let cookie = cookies[i].trim();
+    if (cookie.startsWith(name + '=')) {
+      return decodeURIComponent(cookie.substring(name.length + 1));
+    }
+  }
+  return null;
+}
