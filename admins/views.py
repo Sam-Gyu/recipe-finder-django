@@ -36,7 +36,7 @@ def add_recipe(request):
         duration = data.get('duration')
         description = data.get('description')
         instructions = data.get('instructions')
-        recipeImage = data.get('recipe_image')
+        recipeImage = data.get('image')
         format, imgstr = recipeImage.split(';base64,') 
         ext = format.split('/')[-1]  
 

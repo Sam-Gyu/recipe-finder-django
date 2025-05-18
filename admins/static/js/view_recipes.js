@@ -97,5 +97,5 @@ function fetchRecipes(){
 }
 
 document.querySelector('.add').addEventListener('click', () => {
-    window.location.href = '/details.html';
+    window.location.href = './../manage-recipe';
 });

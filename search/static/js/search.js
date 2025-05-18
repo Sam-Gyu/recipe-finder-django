@@ -35,7 +35,7 @@ function SR(recipess) {
                 <h3 class="recipe-title">${recipe.name}</h3>
                 <div class="recipe-meta">
                     <div class="recipe-rating">${"★".repeat(Math.round(recipe.rate))}</div>
-                    <div class="recipe-time">${recipe.duration} min</div>
+                    <div class="recipe-time">${recipe.duration}</div>
                 </div>
                 <button class="view-button">View Recipe</button>
             </div>

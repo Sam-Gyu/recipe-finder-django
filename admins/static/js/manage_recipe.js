@@ -117,7 +117,7 @@ if(document.getElementById('editRecipeForm'))
                     return;
                 }else{
                     alert('Recipe Added Successfully');
-                    document.getElementById('recipeForm').reset();
+                    location.reload()
                     document.querySelector('#ingredients_table tbody').innerHTML = '';
                 }
             })
