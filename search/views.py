@@ -33,3 +33,28 @@ def search_recipes(request):
         'favorites_json': favorites_json
     }
     return render(request, 'search.html', context)
+
+@login_required
+def view_recipe(request,recipeId):
+    recipe = Recipe.objects.get(id=recipeId)
+    f = Favorite.objects.filter(user=request.user, recipe=recipe)
+    if(f):
+        favorite = json.dumps([{'status': True}])
+    else:
+        favorite = json.dumps([{'status': False}])
+    
+    return render(request, 'view.html',{ 'recipe': recipe,'favorite': favorite, 'rate': "★" * recipe.rate})
+
+
+
+
+
+
+
+
+
+
+
+
+
+

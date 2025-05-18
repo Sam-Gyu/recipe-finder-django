@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-  fetch('/api/favorites/', {
+  fetch('./api/favorites/', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -19,36 +19,45 @@ document.addEventListener('DOMContentLoaded', function () {
       const recipeCard = document.createElement('div');
       recipeCard.classList.add('recipe-card');
       recipeCard.innerHTML = `
-        <img src="${recipe.image}" alt="${recipe.name}">
-        <h3>${recipe.name}</h3>
-        <p><strong>Course:</strong> ${recipe.course}</p>
-        <p><strong>Description:</strong> ${recipe.description}</p>
-        <p><strong>Duration:</strong> ${recipe.duration}</p>
-        <p><strong>Rate:</strong> ${recipe.rate}</p>
-        <button class="remove-fav" data-id="${recipe.id}">Remove from Favorites</button>
-      `;
-      container.appendChild(recipeCard);
+        
+        <div class="favorite-heart" style="color:red;">♥</div>
+            <img src="${recipe.image}" alt="${recipe.name}" class="recipe-image" />
+            <div class="recipe-content">
+                <h3 class="recipe-title">${recipe.name}</h3>
+                <div class="recipe-meta">
+                    <div class="recipe-rating">${"★".repeat(Math.round(recipe.rate))}</div>
+                    <div class="recipe-time">${recipe.duration} min</div>
+                </div>
+                <button class="view-button">View Recipe</button>
+            </div>
+        `;
+
+        recipeCard.querySelector(".view-button").addEventListener("click", () => {
+            window.location.href = `../search/view/${recipe.id}`;
+        });
+
+        recipeCard.querySelector('.favorite-heart').addEventListener('click', function () {
+            fetch('./api/favorites/remove/', {
+              method: 'POST', 
+              headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCSRFToken()
+              },
+              body: JSON.stringify({ recipe_id: recipe.id })
+            })
+            .then(response => response.json())
+            .then(data => {
+              if (data.status === 'removed') {
+                this.parentElement.remove();
+              }
+            });
+        });
+        container.appendChild(recipeCard);
     });
 
-    document.querySelectorAll('.remove-fav').forEach(btn => {
-      btn.addEventListener('click', function () {
-        const recipeId = this.getAttribute('data-id');
-        fetch('/api/favorites/remove/', {
-          method: 'POST', 
-          headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': getCSRFToken()
-          },
-          body: JSON.stringify({ recipe_id: recipeId })
-        })
-        .then(response => response.json())
-        .then(data => {
-          if (data.status === 'removed') {
-            this.parentElement.remove();
-          }
-        });
-      });
-    });
+    
+
+    
 
   });
 });

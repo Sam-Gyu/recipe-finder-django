@@ -80,8 +80,9 @@ function SR(recipess) {
         });
 
         card.querySelector(".view-button").addEventListener("click", () => {
-            window.location.href = `./view.html?recipeId=${recipe.id}`;
+            window.location.href = `view/${recipe.id}`;
         });
+
 
         grid.appendChild(card);
     });

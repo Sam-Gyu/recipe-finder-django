@@ -50,6 +50,6 @@ def get_favorites(request):
         'instructions': fav.recipe.instructions,
         'duration': fav.recipe.duration,
         'rate': fav.recipe.rate,
-        'image': fav.recipe.image,
+        'image': fav.recipe.image.url,
     } for fav in favorites]
     return JsonResponse({'favorites': data})

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  {% load static %}
+  <title>Recipe View</title>
+  <link rel="stylesheet" href="{% static 'css/view.css' %}">
+ 
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header>
+    <div class="menu-container">
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="logo">Recipe Finder</div>
+      <nav class="nav-menu">
+        <a href="{% url 'search_recipes' %}">Search Recipe</a>
+        <a href="{% url 'favorites_page' %}">Favorites</a>
+        <a href="{% url 'login' %}">Logout</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="main-container">
+
+
+
+    <div class="info">
+      
+      <div class="recipe-card">
+        <h2 class="name">{{recipe.name}}</h2>
+        <h3 class="course">{{recipe.course}}</h3>
+        <div class="favorite-heart">♥</div>
+          <img src="{{recipe.image.url}}" alt="" class="recipe-image">
+          <div class="recipe-content">
+            <div class="recipe-meta">
+                  <div class="recipe-rating">
+                    {{ rate }}                    
+                  </div>
+                  <div class="recipe-time">{{recipe.duration}}</div>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <div class="details">
+      <div class="ingrediants">
+        <h3>Ingrediants</h3>  
+        <ul class="ingrediantsList">
+            {% for ingrediant in recipe.ingredients.all %}
+            <li>{{ ingrediant.quantity }} - {{ ingrediant.name }}</li>
+            {% endfor %}
+        </ul>
+          
+      </div>
+      <div class="instructions">
+        <h2>Instructions</h2>
+        <p class="instructionsParagraph">{{ recipe.instructions }}</p>
+        
+      </div>
+    
+      </div>
+  </div>
+<script type="application/json" id="favorites-data">
+    {{ favorite|safe }}
+</script>
+
+<script type="application/json" id="recipe-data">
+    {{ recipe.id }}
+</script>
+
+<script>
+    let favorite = JSON.parse(document.getElementById("favorites-data").textContent) || null;
+    let recipe = document.getElementById("recipe-data").textContent;
+</script>
+  
+  <script src="{% static 'js/view.js' %}"></script>
+
+</body>
+</html>

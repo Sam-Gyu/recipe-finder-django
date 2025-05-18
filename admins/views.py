@@ -62,9 +62,6 @@ def add_recipe(request):
                 name=ing.get('name'),
                 quantity=ing.get('quantity')
             )
-        # Save the recipe instance to the database
-
-
         
             
         return JsonResponse({
