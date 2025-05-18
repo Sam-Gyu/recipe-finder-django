@@ -33,3 +33,24 @@ def search_recipes(request):
         'favorites_json': favorites_json
     }
     return render(request, 'search.html', context)
+
+
+    def view_recipe(request,recipeId):
+     recipe = Recipe.objects.get(id=recipeId)
+     return render(request, 'view.html',{ 'recipe': recipe})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

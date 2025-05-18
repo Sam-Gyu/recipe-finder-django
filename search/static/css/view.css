@@ -1,0 +1,229 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+
+h2{
+  position: relative;
+  text-align: center;
+  z-index: 2;
+  margin-bottom: 0;
+}
+
+.main-container{
+  margin: 100px 0 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.info {
+  margin: 30px;
+  width: 50%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.recipe-card{
+  position: absolute;
+  width: 40%;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  border-radius: 8px;
+}
+
+.favorite-heart {
+  position: relative;
+  top: 40px;
+  left: 10px;
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  z-index: 1;
+  font-size: 16px;
+  color: #ccc;
+  transition: all 0.3s ease;
+}
+
+.favorite-heart:hover {
+  transform: scale(1.1);
+}
+
+.favorite-heart.active {
+  color: red;
+}
+
+.recipe-image {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+}
+
+.recipe-content {
+  padding: 15px;
+  background: white;
+  border-radius: 0 0 8px 8px;
+}
+
+.recipe-title {
+  margin: 0 0 10px;
+  color: var(--text-dark);
+  font-size: 18px;
+}
+
+.recipe-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.recipe-rating {
+  color: #FFC107;
+  font-size: 16px;
+}
+
+.recipe-time {
+  color: var(--primary-medium);
+  font-size: 14px;
+}
+
+
+
+.name{
+    font-size: 24px ;
+    font-style: italic;
+    color: #4E342E;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+}
+
+.course{
+  text-align: center;
+  font-size: 18px ;
+  font-style: italic;
+  color: #2b211f;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+}
+
+.details{
+  overflow-y: auto;
+  width: 50%;
+  height: 100vh;
+}
+
+.ingrediants{
+  align-items: center;
+  margin: 50px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  width: 80%;
+  margin: 30px auto;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+
+}
+
+.ingrediants h3, ul{
+  font-style: italic;
+  color: #4E342E;
+}
+
+ul{
+  font-size: 18px;
+}
+
+.instructions {
+  background-color: #fff;
+  color: #4f1d1d;
+  padding: 30px;
+  margin: 30px auto;
+  width: 80%;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.instructions h2{
+  font-size: 28px;
+  margin-bottom: 15px;
+  color: #be3a1c;
+  text-align: center;
+}
+
+.instructionsol {
+  padding-left: 0px;
+}
+
+  /* Navigation bar styles */
+  .menu-container {
+    position: fixed;
+    top: 20px;
+    left: 15px;
+    display: flex;
+    z-index: 100;
+    align-items: center;
+}
+
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 7px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background:#4E342E;
+    margin: 3px 0;
+    transition: 0.3s;
+}
+
+.nav-menu {
+    position: absolute;
+    top: 35px;
+    left: 0;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    width: 150px;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+}
+
+.menu-container:hover .nav-menu {
+    opacity: 1;
+    visibility: visible;
+}
+
+.nav-menu a {
+    display: block;
+    padding: 10px 15px;
+    color:#4E342E;
+    text-decoration: none;
+}
+
+.nav-menu a:hover {
+    background: #EFEBE9;
+}
+
+.logo {
+    margin-left: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    color:#4E342E;
+}
+
+  

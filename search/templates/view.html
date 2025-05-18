@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+   
+
+<head>
+    {% load static %}
+  <link rel="stylesheet" href="{% static 'css/view.css' %}">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Recipe View</title>
+ 
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header>
+    <div class="menu-container">
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="logo">Recipe Finder</div>
+      <nav class="nav-menu">
+       <a href="{% url 'search' %}">Search Recipe</a>
+       <a href="{% url 'favorites' %}">Favorites</a>
+       <a href="{% url 'logout' %}">Logout</a>
+
+      </nav>
+    </div>
+  </header>
+
+  <div class="main-container">
+
+
+
+    <div class="info">
+      
+      <div class="recipe-card">
+        <h2 class="name">{{ recipe.name }}</h2>
+        <h3 class="course">{{ recipe.course }}</h3>
+        <img src="{{ recipe.image.url }}" alt="{{ recipe.name }}" class="recipe-image">
+
+    <div class="recipe-meta">
+    <div class="recipe-rating">{{ recipe.rating }}</div>
+    <div class="recipe-time">{{ recipe.time }} mins</div>
+    </div>
+
+    <h3>Ingrediants</h3>  
+    <ul class="ingrediantsList">
+    {% for item in recipe.ingredients.all %}
+        <li>{{ item.name }}</li>
+    {% endfor %}
+                </ul>
+
+<p class="instructionsParagraph">{{ recipe.instructions }}</p>
+
+        
+      </div>
+    
+      </div>
+  </div>
+
+  
+  <script src="{% static 'js/view.js' %}"></script>
+
+</body>
+</html>
